@@ -1,4 +1,3 @@
-// src/components/SavedBooks.jsx
 import React from 'react';
 import { Container, Card, Button, Row, Col} from 'react-bootstrap';
 import { useQuery, useMutation } from '@apollo/client';
@@ -12,7 +11,7 @@ const SavedBooks = () => {
   const { loading, error, data } = useQuery(GET_ME);
 
   // Mutation for removing a book
-  const [removeBookMutation] = useMutation(REMOVE_BOOK, {
+  const [removeBook] = useMutation(REMOVE_BOOK, {
       refetchQueries: [
         GET_ME,
         'me'
@@ -36,7 +35,7 @@ const SavedBooks = () => {
     }
     
     try {
-      await removeBookMutation({
+      await removeBook({
         variables: { bookId },
       });
 

@@ -12,7 +12,7 @@ const SearchBooks = () => {
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
 
   // Setup the SAVE_BOOK mutation using useMutation
-  const [saveBook] = useMutation(SAVE_BOOK);
+  const [saveBook, { error }] = useMutation(SAVE_BOOK);
 
   useEffect(() => {
     return () => saveBookIds(savedBookIds);
@@ -50,7 +50,7 @@ const SearchBooks = () => {
   };
 
   const handleSaveBook = async (bookId) => {
-    const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
+    const bookData = searchedBooks.find((book) => book.bookId === bookId);
 
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -60,10 +60,10 @@ const SearchBooks = () => {
 
     try {
       const { data } = await saveBook({
-        variables: { book: bookToSave },
+        variables: { input: bookData },
       });
 
-      setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+      setSavedBookIds([...savedBookIds, bookData.bookId]);
     } catch (err) {
       console.error(err);
     }
