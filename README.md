@@ -38,3 +38,4 @@ Please reach out for additional questions through email: hunterthompson025@gmail
 https://storyhaven-graphqlapi-apolloserver.onrender.com/
 
 ## Screenshot of Application
+![StoryHaven](https://github.com/user-attachments/assets/76150a00-9664-42d0-9611-f10e57d396b3)
